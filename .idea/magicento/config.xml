@@ -265,7 +265,23 @@
                     <module>Mage_ImportExport</module>
                     <class>Mage_ImportExport_Model_Resource_Setup</class>
                 </setup>
-            </importexport_setup><moneybookers_setup>
+            </importexport_setup><bluecom_customattribute_setup>
+                <setup>
+                    <module>Bluecom_CustomAttribute</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </bluecom_customattribute_setup><bluecom_customattribute_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </bluecom_customattribute_write><bluecom_customattribute_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </bluecom_customattribute_read><moneybookers_setup>
                 <setup>
                     <module>Phoenix_Moneybookers</module>
                 </setup>
@@ -1704,7 +1720,12 @@
                 </entities>
             </importexport_resource><connect>
                 <class>Mage_Connect_Model</class>
-            </connect><moneybookers>
+            </connect><bluecom_customattribute>
+                <class>Bluecom_CustomAttribute_Model</class>
+                <resourceModel>bluecom_customattribute_resource</resourceModel>
+            </bluecom_customattribute><bluecom_customattribute_resource>
+                <class>Bluecom_CustomAttribute_Model_Resource</class>
+            </bluecom_customattribute_resource><moneybookers>
                 <class>Phoenix_Moneybookers_Model</class>
             </moneybookers></models>
     <blocks>
@@ -1787,7 +1808,9 @@
                 <class>Mage_ImportExport_Block</class>
             </importexport><connect>
                 <class>Mage_Connect_Block</class>
-            </connect><moneybookers><class>Phoenix_Moneybookers_Block</class></moneybookers></blocks><helpers>
+            </connect><bluecom_customattribute>
+                <class>Bluecom_CustomAttribute_Block</class>
+            </bluecom_customattribute><moneybookers><class>Phoenix_Moneybookers_Block</class></moneybookers></blocks><helpers>
             <core>
                 <encryption_model>Mage_Core_Model_Encryption</encryption_model>
             </core>
@@ -1827,7 +1850,9 @@
                 <class>Mage_Api2_Helper</class>
             </api2><importexport>
                 <class>Mage_ImportExport_Helper</class>
-            </importexport><moneybookers>
+            </importexport><bluecom_customattribute>
+                <class>Bluecom_CustomAttribute_Helper</class>
+            </bluecom_customattribute><moneybookers>
                 <class>Phoenix_Moneybookers_Helper</class>
             </moneybookers></helpers><template>
             <email>
@@ -2566,7 +2591,14 @@
                         <method>saveAdminToRoleRelation</method>
                     </api2>
                 </observers>
-            </admin_user_save_after></events><index>
+            </admin_user_save_after><sales_quote_item_set_product>
+                <observers>
+                    <bluecom_customattribute>
+                        <class>Bluecom_CustomAttribute_Model_Observer</class>
+                        <method>salesQuoteItemSetCustomAttribute</method>
+                    </bluecom_customattribute>
+                </observers>
+            </sales_quote_item_set_product></events><index>
             <lock>
                 <storage>
                     <model>index/lock_storage_db</model>
@@ -2829,7 +2861,7 @@
                         <shipment_type />
                         <weight_type />
                         <sku_type />
-                    <links_purchased_separately /><links_title /><sku /><type_id /><name /><status /><visibility /><price /><weight /><url_path /><url_key /><thumbnail /><small_image /><tax_class_id /><special_from_date /><special_to_date /><special_price /><cost /><is_recurring /><recurring_profile /><msrp_enabled /><msrp /><msrp_display_actual_price_type /><gift_message_available /></product_attributes>
+                    <links_purchased_separately /><links_title /><sku /><type_id /><name /><status /><visibility /><price /><weight /><url_path /><url_key /><thumbnail /><small_image /><tax_class_id /><special_from_date /><special_to_date /><special_price /><cost /><is_recurring /><recurring_profile /><msrp_enabled /><msrp /><msrp_display_actual_price_type /><gift_message_available /><custom_attribute /></product_attributes>
                 </item>
             <totals>
                     <nominal>
@@ -3983,7 +4015,9 @@
                     <to_order_item>*</to_order_item>
                 </weee_tax_row_disposition><base_weee_tax_row_disposition>
                     <to_order_item>*</to_order_item>
-                </base_weee_tax_row_disposition></sales_convert_quote_item><sales_convert_order>
+                </base_weee_tax_row_disposition><custom_attribute>
+                    <to_order_item>*</to_order_item>
+                </custom_attribute></sales_convert_quote_item><sales_convert_order>
                 <customer_id>
                     <to_quote>*</to_quote>
                 </customer_id>
@@ -4280,7 +4314,9 @@
                 </weee_tax_row_disposition><base_weee_tax_row_disposition>
                     <to_cm_item>*</to_cm_item>
                     <to_invoice_item>*</to_invoice_item>
-                </base_weee_tax_row_disposition></sales_convert_order_item><checkout_onepage_billing>
+                </base_weee_tax_row_disposition><custom_attribute>
+                    <to_quote_item>*</to_quote_item>
+                </custom_attribute></sales_convert_order_item><checkout_onepage_billing>
                 <prefix>
                     <to_customer>*</to_customer>
                 </prefix>
@@ -6038,7 +6074,9 @@ T: {{var telephone}}
             <version>1.6.0.2</version>
         </Mage_ImportExport><Mage_Connect>
             <version>1.6.0.0</version>
-        </Mage_Connect><Phoenix_Moneybookers>
+        </Mage_Connect><Bluecom_CustomAttribute>
+            <version>0.1.1</version>
+        </Bluecom_CustomAttribute><Phoenix_Moneybookers>
             <version>1.6.0.0</version>
         </Phoenix_Moneybookers></modules><frontend>
         <routers>
